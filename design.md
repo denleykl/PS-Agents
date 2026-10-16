@@ -97,3 +97,8 @@ With distance between towns as the path cost function g(n), Uniform-Cost Search 
 **Total distance:** 90 + 65 + 105 + 105 = **365 km**
 
 The alternative via Eldoret costs 90 + 65 + 155 + 150 = 460 km, and the route through Thika, Murang'a, Nyeri and Nyahururu is far longer, so the Kericho route is the least-cost path.
+
+### Group Photo 
+Done in a whatsapp group call
+![alt text](image.png)
+![alt text](<proof.jpeg>)
