@@ -13,7 +13,7 @@ The agent is a self-driving trailer that must haul cargo along Kenya's highway n
 
 | Property | Classification | Justification |
 |---|---|---|
-| Observability | Partially observable | Sensors cannot see around bends, hidden road damage, or other drivers' intentions. |
+| Fully Observability vs  Partially observable | Partially observable | Sensors cannot see around bends, hidden road damage, or other drivers' intentions. |
 | Number of agents | Multi-agent | Other drivers, pedestrians and vehicles also act in the environment (competitive and cooperative). |
 | Determinism vs Stochastic | Stochastic | Breakdowns, accidents, weather and traffic make the outcome of an action uncertain. |
 | Episodic vs sequential | Sequential | Each decision (e.g. which road to take) affects later decisions and the final outcome. |
