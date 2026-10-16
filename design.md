@@ -1,13 +1,3 @@
-# ICS 3202: Artificial Intelligence
-## Practical Exercise 3: Designing a Searching Agent
-### Self-Driving Trailer Agent: Nairobi to Kisumu
-
-**Group:** ______________________
-
-**Members:** ______________________________________
-
----
-
 ## 1. Agent Design (PEAS Framework)
 
 The agent is a self-driving trailer that must haul cargo along Kenya's highway network from Nairobi to Kisumu.
@@ -25,7 +15,7 @@ The agent is a self-driving trailer that must haul cargo along Kenya's highway n
 |---|---|---|
 | Observability | Partially observable | Sensors cannot see around bends, hidden road damage, or other drivers' intentions. |
 | Number of agents | Multi-agent | Other drivers, pedestrians and vehicles also act in the environment (competitive and cooperative). |
-| Determinism | Stochastic | Breakdowns, accidents, weather and traffic make the outcome of an action uncertain. |
+| Determinism vs Stochastic | Stochastic | Breakdowns, accidents, weather and traffic make the outcome of an action uncertain. |
 | Episodic vs sequential | Sequential | Each decision (e.g. which road to take) affects later decisions and the final outcome. |
 | Static vs dynamic | Dynamic | The environment changes while the agent is deliberating (traffic, weather). |
 | Discrete vs continuous | Continuous | Speed, position and time are continuous. The abstracted route graph used for planning is discrete. |
@@ -53,7 +43,7 @@ The real road network is far too detailed to search directly. The map is abstrac
 | **Path cost** | Sum of road distances (km) along the route. |
 
 ### Directed graph
-![alt text](image.png)
+![alt text](directed_graph.png)
 
 *Figure 1: Abstracted highway network (each link is two directed edges; labels are distances in km).*
 
@@ -77,46 +67,7 @@ The real road network is far too detailed to search directly. The map is abstrac
 
 Root = Nairobi (initial state). Each node shows the cumulative path cost g(n). Branches that would return to a town already on the same path are pruned; dashed grey nodes are repeated states reached at a higher cost than an earlier visit, so they are not expanded further.
 
-```mermaid
-graph TD
-    A["Nairobi<br/>g = 0"]
-    B["Thika<br/>g = 45"]
-    C["Naivasha<br/>g = 90"]
-    D["Murang'a<br/>g = 85"]
-    E["Nakuru<br/>g = 155"]
-    F["Nyeri<br/>g = 140"]
-    G["Kericho<br/>g = 260"]
-    H["Eldoret<br/>g = 310"]
-    I["Nyahururu<br/>g = 245<br/>(repeated state)"]
-    J["Nyahururu<br/>g = 235"]
-    K["Kisumu<br/>g = 365<br/>(GOAL, optimal)"]
-    L["Kisumu<br/>g = 460<br/>(goal, costlier)"]
-    M["Nakuru<br/>g = 325<br/>(repeated state)"]
-
-    A -->|45| B
-    A ==>|90| C
-    B -->|40| D
-    C ==>|65| E
-    D -->|55| F
-    E ==>|105| G
-    E -->|155| H
-    E -.->|90| I
-    F -->|95| J
-    G ==>|105| K
-    H -->|150| L
-    J -.->|90| M
-
-    style A fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
-    style C fill:#e8f5e9,stroke:#2e7d32,stroke-width:3px,color:#000
-    style E fill:#e8f5e9,stroke:#2e7d32,stroke-width:3px,color:#000
-    style G fill:#e8f5e9,stroke:#2e7d32,stroke-width:3px,color:#000
-    style K fill:#a5d6a7,stroke:#2e7d32,stroke-width:3px,color:#000
-    style L fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
-    style I fill:#eeeeee,stroke:#1565c0,stroke-dasharray:5 5,color:#000
-    style M fill:#eeeeee,stroke:#1565c0,stroke-dasharray:5 5,color:#000
-
-    linkStyle 1,3,5,9 stroke:#2e7d32,stroke-width:4px
-```
+![alt text](search_tree.png)
 
 *Figure 2: Search tree from Nairobi to Kisumu. The optimal path is highlighted in green (thick arrows).*
 
